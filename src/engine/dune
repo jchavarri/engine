@@ -4,6 +4,7 @@
     js_of_ocaml 
     js_of_ocaml-compiler 
     js_of_ocaml-toplevel 
+    js_of_ocaml-ppx
     reason
     compiler-libs
   )

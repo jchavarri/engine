@@ -63,7 +63,14 @@ let report = (~loc: option(Location.t)=?, ~value=?, ~stdout=?, ~stderr=?, ()) =>
 };
 
 let parse_use_file = lexbuf =>
-  try (Ok(Toploop.parse_use_file^(lexbuf))) {
+  try(
+    Ok(
+      {
+        let phrs = Toploop.parse_use_file^(lexbuf);
+        List.map(Ppx.preprocess_phrase, phrs);
+      },
+    )
+  ) {
   | exn => Error(exn)
   };
 

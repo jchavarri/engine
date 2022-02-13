@@ -70,7 +70,9 @@ let langToExtension =
 let moduleToFileName moduleName lang =
   "/static/" ^ (String.capitalize_ascii moduleName) ^ "." ^ (langToExtension lang)
 
-let setup () = JsooTop.initialize ()
+let setup () =
+  JsooTop.initialize ();
+  Ast_mapper.register "js_of_ocaml" (fun _ -> Ppx_js.mapper)
 
 let insertModule moduleName content lang = 
   begin 
